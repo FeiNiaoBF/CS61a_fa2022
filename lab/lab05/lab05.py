@@ -11,6 +11,8 @@ def factors_list(n):
     """
     all_factors = []
     "*** YOUR CODE HERE ***"
+    return [i for i in range(1, n) if n % i == 0]
+
 
 
 def flatten(s):
@@ -30,6 +32,13 @@ def flatten(s):
     [[1, [1, 1]], 1, [1, 1]]
     """
     "*** YOUR CODE HERE ***"
+    slist = []
+    for item in s:
+        if type(item) != list:
+            slist.append(item)
+        else:
+            slist.extend(flatten(item))
+    return slist
 
 
 from math import sqrt
@@ -46,7 +55,13 @@ def distance(city_a, city_b):
     >>> distance(city_c, city_d)
     5.0
     """
-    "*** YOUR CODE HERE ***"
+    x1 = get_lat(city_a)
+    y1 = get_lon(city_a)
+    x2 = get_lat(city_b)
+    y2 = get_lon(city_b)
+    return sqrt((x1-x2)**2 + (y1-y2)**2)
+
+
 
 
 def closer_city(lat, lon, city_a, city_b):
@@ -64,7 +79,11 @@ def closer_city(lat, lon, city_a, city_b):
     >>> closer_city(41.29, 174.78, bucharest, vienna)
     'Bucharest'
     """
-    "*** YOUR CODE HERE ***"
+    temp = make_city('target', lat, lon)
+    if distance(temp, city_a) < distance(temp, city_b):
+        return get_name(city_a)
+    else:
+        return get_name(city_b)
 
 
 def check_city_abstraction():
@@ -105,9 +124,9 @@ def make_city(name, lat, lon):
     1
     """
     if change_abstraction.changed:
-        return {"name": name, "lat": lat, "lon": lon}
+        return {"name": name, "lat": lat, "lon": lon}  # Hash
     else:
-        return [name, lat, lon]
+        return [name, lat, lon]  # list
 
 
 def get_name(city):
@@ -147,7 +166,7 @@ def get_lon(city):
 
 
 def berry_finder(t):
-    """Returns True if t contains a node with the value 'berry' and 
+    """Returns True if t contains a node with the value 'berry' and
     False otherwise.
 
     >>> scrat = tree('berry')
@@ -163,7 +182,16 @@ def berry_finder(t):
     >>> berry_finder(t)
     True
     """
-    "*** YOUR CODE HERE ***"
+    if not is_tree(t):
+        return False
+    if label(t) == 'berry':
+        return True
+    for branch in branches(t):
+        if berry_finder(branch):
+            return True
+    return False
+
+
 
 
 def sprout_leaves(t, leaves):
@@ -199,7 +227,12 @@ def sprout_leaves(t, leaves):
           1
           2
     """
-    "*** YOUR CODE HERE ***"
+    if is_leaf(t):
+        new_branches = [tree(leaf) for leaf in leaves]
+        return tree(label(t), new_branches)
+    else:
+        new_branches = [sprout_leaves(branch, leaves) for branch in branches(t)]
+        return tree(label(t), new_branches)
 
 # Abstraction tests for sprout_leaves and berry_finder
 
