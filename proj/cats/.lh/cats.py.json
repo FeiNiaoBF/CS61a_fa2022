@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 23,
+            "activePatchIndex": 44,
             "patches": [
                 {
                     "date": 1716615365191,
@@ -100,6 +100,90 @@
                 {
                     "date": 1716615742008,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,13 +49,12 @@\n     'Nice pup.'\n     \"\"\"\n     assert all([lower(x) == x for x in topic]), 'topics should be lowercase.'\n     # BEGIN PROBLEM 2\n-    def select_about(paragraphs):\n-        for paragraph in paragraphs:\n+    def select_about(paragraph):\n             for word in split(remove_punctuation(lower(paragraph))):\n                 if word in topic:\n-                return True\n+                    return True\n             return False\n     return select_about\n     # END PROBLEM 2\n \n"
+                },
+                {
+                    "date": 1716616436065,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     \"\"\"\n     typed_words = split(typed)\n     source_words = split(source)\n     # BEGIN PROBLEM 3\n-    \"*** YOUR CODE HERE ***\"\n+    \n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616502359,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     \"\"\"\n     typed_words = split(typed)\n     source_words = split(source)\n     # BEGIN PROBLEM 3\n-    \n+    typed_len = len()\n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616510822,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,10 @@\n     \"\"\"\n     typed_words = split(typed)\n     source_words = split(source)\n     # BEGIN PROBLEM 3\n-    typed_len = len()\n+    typed_len = len(typed_words)\n+    source_len = len()\n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616517234,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,9 +85,9 @@\n     typed_words = split(typed)\n     source_words = split(source)\n     # BEGIN PROBLEM 3\n     typed_len = len(typed_words)\n-    source_len = len()\n+    source_len = len(sor)\n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616526120,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,9 +85,9 @@\n     typed_words = split(typed)\n     source_words = split(source)\n     # BEGIN PROBLEM 3\n     typed_len = len(typed_words)\n-    source_len = len(sor)\n+    source_len = len(source_w)\n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616544278,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,9 +85,10 @@\n     typed_words = split(typed)\n     source_words = split(source)\n     # BEGIN PROBLEM 3\n     typed_len = len(typed_words)\n-    source_len = len(source_w)\n+    source_len = len(source_words)\n+    if \n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616559621,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,9 +86,11 @@\n     source_words = split(source)\n     # BEGIN PROBLEM 3\n     typed_len = len(typed_words)\n     source_len = len(source_words)\n-    if \n+    if typed_len == 0 and source_len == 0:\n+        return 100.0\n+    \n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616570713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,9 +88,9 @@\n     typed_len = len(typed_words)\n     source_len = len(source_words)\n     if typed_len == 0 and source_len == 0:\n         return 100.0\n-    \n+    if ty\n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616584677,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,9 +88,11 @@\n     typed_len = len(typed_words)\n     source_len = len(source_words)\n     if typed_len == 0 and source_len == 0:\n         return 100.0\n-    if ty\n+    if typed_len == 0 or source_len == 0:\n+        return 0.0\n+    \n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616598816,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -90,9 +90,9 @@\n     if typed_len == 0 and source_len == 0:\n         return 100.0\n     if typed_len == 0 or source_len == 0:\n         return 0.0\n-    \n+    count = 0\n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616676430,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,8 +91,9 @@\n         return 100.0\n     if typed_len == 0 or source_len == 0:\n         return 0.0\n     count = 0\n+    for i \n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616683061,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,9 +91,9 @@\n         return 100.0\n     if typed_len == 0 or source_len == 0:\n         return 0.0\n     count = 0\n-    for i \n+    for i in \n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616767469,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,9 +91,9 @@\n         return 100.0\n     if typed_len == 0 or source_len == 0:\n         return 0.0\n     count = 0\n-    for i in \n+    for i in range(min(ty))\n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616773627,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,9 +91,10 @@\n         return 100.0\n     if typed_len == 0 or source_len == 0:\n         return 0.0\n     count = 0\n-    for i in range(min(ty))\n+    for i in range(min(typed_len, source_len)):\n+        \n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616782388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,9 @@\n     if typed_len == 0 or source_len == 0:\n         return 0.0\n     count = 0\n     for i in range(min(typed_len, source_len)):\n-        \n+        if type\n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616790967,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,9 @@\n     if typed_len == 0 or source_len == 0:\n         return 0.0\n     count = 0\n     for i in range(min(typed_len, source_len)):\n-        if type\n+        if typed_words[i] == sou\n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616801137,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -92,9 +92,10 @@\n     if typed_len == 0 or source_len == 0:\n         return 0.0\n     count = 0\n     for i in range(min(typed_len, source_len)):\n-        if typed_words[i] == sou\n+        if typed_words[i] == source_words[i]:\n+            \n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616808194,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -93,9 +93,10 @@\n         return 0.0\n     count = 0\n     for i in range(min(typed_len, source_len)):\n         if typed_words[i] == source_words[i]:\n-            \n+            count += 1\n+        \n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616813298,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -94,9 +94,9 @@\n     count = 0\n     for i in range(min(typed_len, source_len)):\n         if typed_words[i] == source_words[i]:\n             count += 1\n-        \n+    return co\n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616853415,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -94,9 +94,9 @@\n     count = 0\n     for i in range(min(typed_len, source_len)):\n         if typed_words[i] == source_words[i]:\n             count += 1\n-    return co\n+    return count / typed_len / 100\n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716616876922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -94,9 +94,9 @@\n     count = 0\n     for i in range(min(typed_len, source_len)):\n         if typed_words[i] == source_words[i]:\n             count += 1\n-    return count / typed_len / 100\n+    return count / typed_len  100\n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
                 }
             ],
             "date": 1716615365191,
