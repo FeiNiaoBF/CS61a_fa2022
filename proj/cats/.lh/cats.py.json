@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 44,
+            "activePatchIndex": 47,
             "patches": [
                 {
                     "date": 1716615365191,
@@ -184,6 +184,18 @@
                 {
                     "date": 1716616876922,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -94,9 +94,9 @@\n     count = 0\n     for i in range(min(typed_len, source_len)):\n         if typed_words[i] == source_words[i]:\n             count += 1\n-    return count / typed_len / 100\n+    return count / typed_len  100\n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716617060305,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -94,9 +94,9 @@\n     count = 0\n     for i in range(min(typed_len, source_len)):\n         if typed_words[i] == source_words[i]:\n             count += 1\n-    return count / typed_len  100\n+    return count / typed_len * 100\n     # END PROBLEM 3\n \n \n def wpm(typed, elapsed):\n"
+                },
+                {
+                    "date": 1716617191093,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -112,9 +112,9 @@\n     2.0\n     \"\"\"\n     assert elapsed > 0, 'Elapsed time must be positive'\n     # BEGIN PROBLEM 4\n-    \"*** YOUR CODE HERE ***\"\n+   \n     # END PROBLEM 4\n \n \n ###########\n"
+                },
+                {
+                    "date": 1716617200143,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -112,9 +112,9 @@\n     2.0\n     \"\"\"\n     assert elapsed > 0, 'Elapsed time must be positive'\n     # BEGIN PROBLEM 4\n-    # len(str) \n+    # len(str) /\n     # END PROBLEM 4\n \n \n ###########\n"
                 }
             ],
             "date": 1716615365191,
