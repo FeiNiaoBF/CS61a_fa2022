@@ -30,7 +30,8 @@ def pick(paragraphs, select, k):
     ''
     """
     # BEGIN PROBLEM 1
-    "*** YOUR CODE HERE ***"
+    select_arr = [word for word in paragraphs if select(word)]
+    return select_arr[k] if k < len(select_arr) else ''
     # END PROBLEM 1
 
 
