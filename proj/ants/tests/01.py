@@ -65,7 +65,7 @@ test = {
           >>> # Testing HarvesterAnt action
           >>> # Create a test layout where the colony is a single row with 9 tiles
           >>> beehive = Hive(make_test_assault_plan())
-          >>> gamestate = GameState(None, beehive, ant_types(), dry_layout, (1, 9))
+          >>> gamestate = GameState(beehive, ant_types(), dry_layout, (1, 9))
           >>> #
           >>> gamestate.food = 4
           >>> harvester = HarvesterAnt()

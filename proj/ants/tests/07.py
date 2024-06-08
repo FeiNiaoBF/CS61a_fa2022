@@ -258,9 +258,9 @@ test = {
         },
         {
           'code': r"""
-          >>> # test proper call to death callback
-          >>> original_death_callback = Insect.death_callback
-          >>> Insect.death_callback = lambda x: print("insect died")
+          >>> # test proper call to zero-health callback
+          >>> original_zero_health_callback = Insect.zero_health_callback
+          >>> Insect.zero_health_callback = lambda x: print("insect died")
           >>> ant = HungryAnt()
           >>> bee = Bee(1000)              # A Bee with 1000 health
           >>> place = gamestate.places["tunnel_0_0"]
@@ -268,7 +268,7 @@ test = {
           >>> place.add_insect(ant)
           >>> ant.action(gamestate) # if you fail this test you probably didn't correctly call Ant.reduce_health or Insect.reduce_health
           insect died
-          >>> Insect.death_callback = original_death_callback
+          >>> Insect.zero_health_callback = original_zero_health_callback
           """,
           'hidden': False,
           'locked': False,
@@ -296,6 +296,31 @@ test = {
           'hidden': False,
           'locked': False,
           'multiline': False
+        },
+        {
+          'code': r"""
+          >>> # Testing HungryAnt chooses a random bee in its Place, and that it reduces that bee's health to 0.
+          >>> hungry = HungryAnt()
+          >>> HungryAnt.chewing_turns = 0
+          >>> place = gamestate.places["tunnel_0_0"]
+          >>> place.add_insect(hungry)
+          >>> first_bee_chosen_count = 0
+          >>> for _ in range(1000):
+          ...     place.add_insect(Bee(1)) # Add a bee with 1 health to place
+          ...     place.add_insect(Bee(2)) # Add a second bee with 2 health to place
+          ...     hungry.action(gamestate) # Eat one of the bees randomly
+          ...     assert len(place.bees) == 1, "A bee was not eaten! Make sure you are reducing the bee's health by the correct amount."
+          ...     if place.bees[0].health == 2:
+          ...             first_bee_chosen_count += 1
+          ...     place.remove_insect(place.bees[0])
+          >>> first_bee_chosen_count < 1000 # If bees are chosen randomly, HungryAnt should eat the first bee less than 1000 times with high probability
+          True
+          >>> first_bee_chosen_count > 0 # If bees are chosen randomly, HungryAnt should eat the first bee at least once with high probability
+          True
+          """,
+          'hidden': False,
+          'locked': False,
+          'multiline': False
         }
       ],
       'scored': True,
@@ -303,7 +328,7 @@ test = {
       >>> from ants import *
       >>> beehive, layout = Hive(AssaultPlan()), dry_layout
       >>> dimensions = (1, 9)
-      >>> gamestate = GameState(None, beehive, ant_types(), layout, dimensions)
+      >>> gamestate = GameState(beehive, ant_types(), layout, dimensions)
       >>> #
       """,
       'teardown': '',

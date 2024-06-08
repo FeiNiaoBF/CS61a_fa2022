@@ -226,7 +226,7 @@ test = {
       >>> from ants import *
       >>> beehive, layout = Hive(AssaultPlan()), dry_layout
       >>> dimensions = (1, 9)
-      >>> gamestate = GameState(None, beehive, ant_types(), layout, dimensions)
+      >>> gamestate = GameState(beehive, ant_types(), layout, dimensions)
       >>> thrower = ThrowerAnt()
       >>> ant_place = gamestate.places["tunnel_0_0"]
       >>> ant_place.add_insect(thrower)

@@ -1,6 +1,6 @@
 {
     "name": "Project 3: Ants Vs. SomeBees",
-    "endpoint": "cal/cs61a/fa22/proj03",
+    "endpoint": "ucb/cs61a/sp24/proj03",
     "src": [
         "ants.py"
     ],
@@ -16,15 +16,13 @@
         "05",
         "06",
         "07",
-        "08",
         "08a",
         "08b",
         "08c",
         "09",
         "10",
         "11",
-        "12",
-        "EC"
+        "12"
     ],
     "protocols": [
         "restore",
