@@ -1,6 +1,6 @@
 test = {
   'name': 'Problem 8a',
-  'points': 1,
+  'points': 0,
   'suites': [
     {
       'cases': [
@@ -89,9 +89,6 @@ test = {
           >>> bee.health
           73b94a1326ae2e803c3421016112207b
           # locked
-          >>> container.can_contain(FireAnt()) # Container already holds another ant!
-          03456a09f22295a39ca84d133a26f63d
-          # locked
           """,
           'hidden': False,
           'locked': True,
@@ -99,7 +96,7 @@ test = {
         },
         {
           'code': r"""
-          >>> container = ContainerAnt(1)
+          >>> container = ContainerAnt()
           >>> container.action(gamestate) # ContainerAnt does not have an ant contained, should not have any action taken!
           """,
           'hidden': False,
@@ -107,11 +104,11 @@ test = {
           'multiline': False
         }
       ],
-      'scored': True,
+      'scored': False,
       'setup': r"""
       >>> from ants import *
       >>> beehive, layout = Hive(AssaultPlan()), dry_layout
-      >>> gamestate = GameState(beehive, ant_types(), layout, (1, 9))
+      >>> gamestate = GameState(None, beehive, ant_types(), layout, (1, 9))
       >>> #
       """,
       'teardown': '',

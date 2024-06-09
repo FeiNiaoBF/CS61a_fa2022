@@ -1,6 +1,6 @@
 test = {
   'name': 'Problem 11',
-  'points': 2,
+  'points': 1,
   'suites': [
     {
       'cases': [
@@ -54,12 +54,6 @@ test = {
           >>> scuba.health
           d89cf7c79d5a479b0f636734143ed5e6
           # locked
-          >>> scuba.name
-          e1ec5a6839b22bd9d5295cbb48d6684c
-          # locked
-          >>> scuba.is_waterproof
-          c7a88a0ffd3aef026b98eef6e7557da3
-          # locked
           """,
           'hidden': False,
           'locked': True,
@@ -78,7 +72,7 @@ test = {
         {
           'code': r"""
           >>> # Testing if ScubaThrower is waterproof
-          >>> water = gamestate.places["water_0_2"]
+          >>> water = Water('Water')
           >>> ant = ScubaThrower()
           >>> water.add_insect(ant)
           >>> ant.place is water
@@ -95,11 +89,8 @@ test = {
         {
           'code': r"""
           >>> # Testing that ThrowerAnt is not waterproof
-          >>> water = gamestate.places["water_0_2"]
+          >>> water = Water('Water')
           >>> ant = ThrowerAnt()
-          >>> ant.is_waterproof
-          03456a09f22295a39ca84d133a26f63d
-          # locked
           >>> water.add_insect(ant)
           >>> ant.place is water
           03456a09f22295a39ca84d133a26f63d
@@ -122,7 +113,7 @@ test = {
           >>> place1.add_insect(ant)
           >>> place2.add_insect(bee)
           >>> ant.action(gamestate)
-          >>> bee.health
+          >>> bee.health  # ScubaThrower can throw on land
           2
           """,
           'hidden': False,
@@ -132,14 +123,15 @@ test = {
         {
           'code': r"""
           >>> # Testing ScubaThrower in the water
-          >>> place1 = gamestate.places["water_0_2"]
-          >>> place2 = gamestate.places["tunnel_0_4"]
+          >>> water = Water("water")
+          >>> water.entrance = gamestate.places["tunnel_0_1"]
+          >>> target = gamestate.places["tunnel_0_4"]
           >>> ant = ScubaThrower()
           >>> bee = Bee(3)
-          >>> place1.add_insect(ant)
-          >>> place2.add_insect(bee)
+          >>> water.add_insect(ant)
+          >>> target.add_insect(bee)
           >>> ant.action(gamestate)
-          >>> bee.health
+          >>> bee.health  # ScubaThrower can throw in water
           2
           """,
           'hidden': False,
@@ -150,9 +142,9 @@ test = {
       'scored': True,
       'setup': r"""
       >>> from ants import *
-      >>> beehive, layout = Hive(AssaultPlan()), wet_layout
+      >>> beehive, layout = Hive(AssaultPlan()), dry_layout
       >>> dimensions = (1, 9)
-      >>> gamestate = GameState(beehive, ant_types(), layout, dimensions)
+      >>> gamestate = GameState(None, beehive, ant_types(), layout, dimensions)
       >>> #
       """,
       'teardown': '',
@@ -191,9 +183,9 @@ test = {
       'scored': True,
       'setup': r"""
       >>> from ants import *
-      >>> beehive, layout = Hive(AssaultPlan()), wet_layout
+      >>> beehive, layout = Hive(AssaultPlan()), dry_layout
       >>> dimensions = (1, 9)
-      >>> gamestate = GameState(beehive, ant_types(), layout, dimensions)
+      >>> gamestate = GameState(None, beehive, ant_types(), layout, dimensions)
       >>> old_thrower_action = ThrowerAnt.action
       >>> old_throw_at = ThrowerAnt.throw_at
       """,

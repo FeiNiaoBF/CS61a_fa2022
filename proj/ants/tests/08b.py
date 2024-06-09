@@ -1,6 +1,6 @@
 test = {
   'name': 'Problem 8b',
-  'points': 1,
+  'points': 0,
   'suites': [
     {
       'cases': [
@@ -58,90 +58,45 @@ test = {
         {
           'code': r"""
           >>> # Container ant added before another ant
-          >>> container = ContainerAnt(1)
+          >>> container = ContainerAnt()
           >>> other_ant = ThrowerAnt()
           >>> place = gamestate.places['tunnel_0_0']
           >>> place.add_insect(container)  # ContainerAnt in place first
           >>> place.add_insect(other_ant)
           >>> place.ant is other_ant
-          False
+          03456a09f22295a39ca84d133a26f63d
+          # locked
           >>> place.ant is container
-          True
+          c7a88a0ffd3aef026b98eef6e7557da3
+          # locked
           >>> container.ant_contained is other_ant
-          True
-          >>> container.place is place
-          True
-          >>> other_ant.place is container.place  # ThrowerAnt should have the same place attribute as ContainerAnt
-          True
+          c7a88a0ffd3aef026b98eef6e7557da3
+          # locked
           """,
           'hidden': False,
-          'locked': False,
+          'locked': True,
           'multiline': False
         },
         {
           'code': r"""
           >>> # Any Container Ant can be added after another ant
-          >>> container = ContainerAnt(1)
+          >>> container = ContainerAnt()
           >>> other_ant = ThrowerAnt()
           >>> place = gamestate.places['tunnel_0_0']
           >>> place.add_insect(other_ant)  # Other ant in place first
           >>> place.ant is other_ant
-          True
+          c7a88a0ffd3aef026b98eef6e7557da3
+          # locked
           >>> place.add_insect(container)
           >>> place.ant is container
-          True
+          c7a88a0ffd3aef026b98eef6e7557da3
+          # locked
           >>> container.ant_contained is other_ant
-          True
-          >>> container.place is place
-          True
-          >>> other_ant.place is container.place  # ThrowerAnt should have the same place attribute as ContainerAnt
-          True
+          c7a88a0ffd3aef026b98eef6e7557da3
+          # locked
           """,
           'hidden': False,
-          'locked': False,
-          'multiline': False
-        },
-        {
-          'code': r"""
-          >>> # Only one ant can be added to a container
-          >>> container = ContainerAnt(1)
-          >>> a = ThrowerAnt()
-          >>> b = ThrowerAnt()
-          >>> place = gamestate.places['tunnel_0_0']
-          >>> place.add_insect(container)
-          >>> place.add_insect(a)
-          >>> place.add_insect(b)
-          Traceback (most recent call last):
-          ...
-          AssertionError: Too many ants in tunnel_0_0
-          """,
-          'hidden': False,
-          'locked': False,
-          'multiline': False
-        },
-        {
-          'code': r"""
-          >>> # Combination of add and remove
-          >>> container = ContainerAnt(1)
-          >>> a = ThrowerAnt()
-          >>> b = ThrowerAnt()
-          >>> place = gamestate.places['tunnel_0_0']
-          >>> place.add_insect(a)
-          >>> place.add_insect(container)
-          >>> container.remove_from(place)
-          >>> place.ant is a
-          True
-          >>> container = ContainerAnt(1)
-          >>> place.add_insect(container)
-          >>> a.remove_from(place)
-          >>> place.add_insect(b)
-          >>> place.ant is container
-          True
-          >>> b.place is place
-          True
-          """,
-          'hidden': False,
-          'locked': False,
+          'locked': True,
           'multiline': False
         }
       ],
@@ -149,7 +104,7 @@ test = {
       'setup': r"""
       >>> from ants import *
       >>> beehive, layout = Hive(AssaultPlan()), dry_layout
-      >>> gamestate = GameState(beehive, ant_types(), layout, (1, 9))
+      >>> gamestate = GameState(None, beehive, ant_types(), layout, (1, 9))
       >>> #
       """,
       'teardown': '',

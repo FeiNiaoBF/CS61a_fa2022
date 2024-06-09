@@ -57,10 +57,10 @@ test = {
           'question': 'What constraint does a ShortThrower have on its throwing distance?'
         },
         {
-          'answer': 'ea3b075df24f8c00463adce1174345d3',
+          'answer': '643156e8120f86f223b6ffa5f8345c37',
           'choices': [
-            'The closest random Bee in front of it within range',
-            'The closest random Bee behind it within range',
+            'The closest Bee in front of it within range',
+            'The closest Bee behind it within range',
             'Any Bee in its current Place',
             'Any Bee within range'
           ],
@@ -309,7 +309,7 @@ test = {
       >>> from ants import *
       >>> beehive, layout = Hive(AssaultPlan()), dry_layout
       >>> dimensions = (1, 9)
-      >>> gamestate = GameState(beehive, ant_types(), layout, dimensions)
+      >>> gamestate = GameState(None, beehive, ant_types(), layout, dimensions)
       >>> #
       """,
       'teardown': '',
@@ -387,7 +387,7 @@ test = {
       >>> from ants import *
       >>> beehive, layout = Hive(AssaultPlan()), dry_layout
       >>> dimensions = (1, 100)
-      >>> gamestate = GameState(beehive, ant_types(), layout, dimensions)
+      >>> gamestate = GameState(None, beehive, ant_types(), layout, dimensions)
       >>> #
       """,
       'teardown': '',
@@ -478,7 +478,7 @@ test = {
       >>> from ants import *
       >>> beehive, layout = Hive(AssaultPlan()), dry_layout
       >>> dimensions = (1, 9)
-      >>> gamestate = GameState(beehive, ant_types(), layout, dimensions)
+      >>> gamestate = GameState(None, beehive, ant_types(), layout, dimensions)
       >>> old_thrower_action = ThrowerAnt.action
       >>> old_throw_at = ThrowerAnt.throw_at
       >>> #
